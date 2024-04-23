@@ -18,21 +18,7 @@
         img-src="https://cdn.quasar.dev/img/quasar.jpg"
       />
     </q-carousel>
-    <q-btn color="primary" label="Primary" />
-    <div class="q-pa-md q-gutter-sm">
-      <q-banner rounded :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
-        <template v-slot:avatar>
-          <img
-            src="https://cdn.quasar.dev/img/mountains.jpg"
-            style="width: 100px; height: 64px"
-          />
-
-          Could not retrieve travel data.
-
-          <q-btn flat label="Retry" />
-        </template>
-      </q-banner>
-    </div>
+    <q-btn class="slider-btn" color="primary" label="Primary" />
   </div>
 </template>
 
@@ -41,6 +27,16 @@ import { ref } from "vue";
 
 const slide = ref(1);
 defineOptions({
-  name: "IndexPage",
+  name: "Nature",
 });
 </script>
+
+<style scoped>
+.slider-btn{
+  width: 150px;
+  margin-top: 10px;
+  display: inline-block;
+  align-content: center;
+  margin-left: 46%;
+}
+</style>
