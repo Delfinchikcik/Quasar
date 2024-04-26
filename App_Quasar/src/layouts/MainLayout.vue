@@ -93,13 +93,17 @@
     </q-page-container>
 
     <q-footer elevated class="bg-grey-8 text-white">
-      <q-toolbar>
-        <q-toolbar-title>
+      <q-toolbar class="text-center">
+        <q-toolbar-title class="q-my-md">
           <q-avatar>
             <img src="planet-earth.png" />
           </q-avatar>
-          <div>Our Nature</div>
+            <q-label>Our Nature</q-label>
         </q-toolbar-title>
+        <q-img
+        class="header-bg-image absolute-top"
+        src="https://cdn.quasar.dev/img/mountains.jpg"
+      ></q-img>
       </q-toolbar>
     </q-footer>
   </q-layout>
@@ -137,4 +141,5 @@ export default {
   opacity: 0.2;
   z-index: -1;
 }
+
 </style>

@@ -1,14 +1,14 @@
 <template>
-  <div class="q-pa-md">
-    <h3>Todoshka</h3>
+  <q-page class="q-pa-md">
+    <h3 class="text-center q-my-sm">Todoshka</h3>
     <q-input
-    @keyup.enter="addTask"
+      @keyup.enter="addTask"
       class="q-mb-md"
       filled
       v-model="newTask"
       placeholder="Add task"
     >
-      <q-btn @click="addTask" round dense flat icon="add"></q-btn>
+      <q-btn :disable="!newTask" @click="addTask" round dense flat icon="add"></q-btn>
     </q-input>
     <q-list separator bordered>
       <q-item
@@ -43,7 +43,14 @@
         </q-item-section>
       </q-item>
     </q-list>
-  </div>
+    <div v-if="tasks == ''" class="absolute-center">
+      <div class="text-h4 text-primary text-center"><h4>
+        No Tasks
+      </h4>
+        <q-img class="image-noTask" src="https://cdn-icons-png.flaticon.com/512/762/762686.png"></q-img>
+      </div>
+    </div>
+  </q-page>
 </template>
 
 <script setup>
@@ -55,18 +62,7 @@ defineOptions({
 });
 let newTask = ref("");
 const tasks = ref([
-  {
-    title: "First",
-    done: true,
-  },
-  {
-    title: "Second",
-    done: false,
-  },
-  {
-    title: "Three",
-    done: false,
-  },
+
 ]);
 
 function deleteTask(index) {
@@ -85,12 +81,25 @@ function deleteTask(index) {
   });
 }
 function addTask() {
-  tasks.value.push({
-    title: newTask.value,
-    done: false,
-  });
-  newTask.value = ''
-};
+  if(newTask.value){
+    tasks.value.push({
+      title: newTask.value,
+      done: false,
+    });
+    newTask.value = "";
+  } else{
+    $q.dialog({
+    dark: true,
+    title: "Your input is empty?",
+    message: "Please enter your task",
+    cancel: true,
+    persistent: true,
+  }).onOk(() => {
+    });
+  };
+  
+  }
+
 </script>
 
 <style lang="scss">
@@ -99,6 +108,12 @@ function addTask() {
     text-decoration: line-through;
     color: green;
   }
+}
+.image-noTask{
+  width: 200px;
+  height: 200px;
+  opacity: .2;
+  
 }
 </style>
 
